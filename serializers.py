@@ -22,11 +22,12 @@ class ProductSchema(ma.Schema):
     provider = fields.Nested(ProviderSchema, dump_only=True)
 
     @post_dump(pass_many=True)
-    def post_dump(self, data, **kwargs):
-        for elem in data:
-            if 'provider' in elem:
-                elem['provider_name'] = elem.get('provider', {}).get('name')
-                del elem['provider']
+    def post_dump(self, data, many, **kwargs):
+        if many:
+            for elem in data:
+                if 'provider' in elem:
+                    elem['provider_name'] = elem.get('provider', {}).get('name')
+                    del elem['provider']
         return data
 
 

@@ -5,7 +5,7 @@ from config import db
 
 class ClientsLogic:
     @classmethod
-    def get_all_clients(self):
+    def get_all_clients(cls):
         """
         Retrieves all the clients inside the database
         Returns:
@@ -13,7 +13,8 @@ class ClientsLogic:
         """
         return Client.query.all()
 
-    def create(self, data):
+    @classmethod
+    def create(cls, data):
         """
         Creates a Client instance and stores it into the database
         Args:
@@ -24,13 +25,13 @@ class ClientsLogic:
         """
         client = Client(**data)
         db.session.add(client)
-        db.commit()
+        db.session.commit()
         return client
 
 
 class ProductsLogic:
     @classmethod
-    def get_all_products(self):
+    def get_all_products(cls):
         """
         Retrieves all the products inside the database
         Returns:
@@ -38,7 +39,8 @@ class ProductsLogic:
         """
         return Product.query.all()
 
-    def create(self, data):
+    @classmethod
+    def create(cls, data):
         """
         Creates a Product instance and stores it into the database
         Args:
@@ -53,13 +55,13 @@ class ProductsLogic:
         # by default all the products will be associated to the "tiendas de 1" provider
         product = Product(**data)
         db.session.add(product)
-        db.commit()
+        db.session.commit()
         return product
 
 
 class ReceiptsLogic:
     @classmethod
-    def get_all_receipts(self):
+    def get_all_receipts(cls):
         """
         Retrieves all the receipts inside the database
         Returns:
