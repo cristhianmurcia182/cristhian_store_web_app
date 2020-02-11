@@ -26,6 +26,6 @@ transaction_data = [{'product_quantity': 50, 'money_amount': 10000},
                     {'product_quantity': 1, 'money_amount': 9000}]
 
 receipts_data = [{'voucher': 'aas322', 'detail': 'Compró: 1 Cerveza, 3 Arandanos, 4 Arroz',
-                  'money_amount': 25500, 'taxes': 5000, 'total_money_amount': 30500},
+                  'money_amount': 25500, 'taxes': 5000},
                  {'voucher': 'aas322', 'detail': 'Compró: 1 coco, 3 camaron, 4 yogurth', 'money_amount': 9600,
-                  'taxes': 2000, 'total_money_amount': 11600}]
+                  'taxes': 2000}]
