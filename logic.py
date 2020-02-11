@@ -3,6 +3,71 @@ from initial_data import client_data, receipts_data, transaction_data, providers
 from config import db
 
 
+class ClientsLogic:
+    @classmethod
+    def get_all_clients(self):
+        """
+        Retrieves all the clients inside the database
+        Returns:
+            List containing Client instances.
+        """
+        return Client.query.all()
+
+    def create(self, data):
+        """
+        Creates a Client instance and stores it into the database
+        Args:
+            data: Dict containing information about the client to be created
+
+        Returns:
+            Client instance.
+        """
+        client = Client(**data)
+        db.session.add(client)
+        db.commit()
+        return client
+
+
+class ProductsLogic:
+    @classmethod
+    def get_all_products(self):
+        """
+        Retrieves all the products inside the database
+        Returns:
+            List containing Product instances.
+        """
+        return Product.query.all()
+
+    def create(self, data):
+        """
+        Creates a Product instance and stores it into the database
+        Args:
+            data: Dict containing information about the client to be created
+
+        Returns:
+            Client instance.
+        """
+        providers = Provider.query.all()
+        provider = providers[1] if type(providers) is list and len(providers) > 0 else None
+        data.update({'provider': provider})
+        # by default all the products will be associated to the "tiendas de 1" provider
+        product = Product(**data)
+        db.session.add(product)
+        db.commit()
+        return product
+
+
+class ReceiptsLogic:
+    @classmethod
+    def get_all_receipts(self):
+        """
+        Retrieves all the receipts inside the database
+        Returns:
+            List containing Receipt instances.
+        """
+        return Receipt.query.all()
+
+
 class DataMigration:
     @classmethod
     def add_data(cls, Instance, data, db):
@@ -40,23 +105,3 @@ class DataMigration:
         DataMigration.add_data(Transaction, transaction_data, db)
 
         db.session.commit()
-
-
-class ClientsLogic:
-    @classmethod
-    def get_all_clients(self):
-        return Client.query.all()
-
-
-class ProductsLogic:
-    @classmethod
-    def get_all_products(self):
-        return Product.query.all()
-
-
-class ReceiptsLogic:
-    @classmethod
-    def get_all_receipts(self):
-        return Receipt.query.all()
-
-
