@@ -19,3 +19,40 @@ I defined a simple MVC architecture to isolate and to communicate in a clean man
 To model the data I used a relational model which is shown below:
 
 
+![alt text](https://github.com/cristhianmurcia182/cristhian_store_web_app/blob/master/modelo10.png)
+
+To try out my endpoints please use postman and paste the following CURLs:
+
+## Create a product:
+
+curl --location --request POST 'http://localhost:5000/products' \
+--header 'Content-Type: application/json' \
+--data-raw '
+{"name": "chocolatina jet", "unitary_cost": "123131"}'
+
+## Create a client
+
+curl --location --request POST 'http://localhost:5000/clients' \
+--header 'Content-Type: application/json' \
+--data-raw '{"name": "Simon Bolivrl", "phone": "123131", "num_doc":"123123"}'
+
+## Retrieve products
+
+curl --location --request GET 'http://localhost:5000/products' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+
+
+## Retrieve clients
+
+curl --location --request GET 'http://localhost:5000/clients' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+
+
+## Retrieve receipts
+
+curl --location --request GET 'http://localhost:5000/receipts' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+
