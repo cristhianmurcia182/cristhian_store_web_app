@@ -1,6 +1,6 @@
 from flask_marshmallow import Marshmallow
 from flask import Flask
-from flask_restful import  Api
+from flask_restplus import Api, Namespace
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -13,6 +13,9 @@ class WebConfiguration:
 
 app = Flask(__name__)
 
+
+name_space = Namespace('main', description='Main APIs')
+
 SQL_SERVER_URL = f"mssql+pyodbc://{WebConfiguration.DB_USER_NAME}:" \
                                         f"{WebConfiguration.DB_PASSWORD}@localhost:1433/" \
                                         f"{WebConfiguration.DB_NAME}?driver={WebConfiguration.DRIVER}"
@@ -20,6 +23,8 @@ SQL_SERVER_URL = f"mssql+pyodbc://{WebConfiguration.DB_USER_NAME}:" \
 app.config["SQLALCHEMY_DATABASE_URI"] = SQL_SERVER_URL
 
 db = SQLAlchemy(app)
-api = Api(app)
+
+api = Api(app = app)
+
 
 ma = Marshmallow()

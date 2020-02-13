@@ -1,11 +1,12 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
-from config import app, api
+from flask_restplus import Api, Resource
+from config import app, api, name_space
 from logic import ClientsLogic, ProductsLogic, ReceiptsLogic
 
 from serializers import ClientSchema, ProductSchema, ReceiptSchema
 
 
+@name_space.route("/clients")
 class Clients(Resource):
     def get(self):
         data = ClientsLogic.get_all_clients()
@@ -23,6 +24,7 @@ class Clients(Resource):
         return client, 201
 
 
+@name_space.route("/products")
 class Products(Resource):
     def get(self):
         data = ProductsLogic.get_all_products()
@@ -39,6 +41,7 @@ class Products(Resource):
         return product, 201
 
 
+@name_space.route("/receipts")
 class Receipts(Resource):
     def get(self):
         data = ReceiptsLogic.get_all_receipts()
