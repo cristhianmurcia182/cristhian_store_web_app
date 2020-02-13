@@ -12,6 +12,10 @@ For this project I used the following technologies:
 6. unittest: To test the code logic.
 7. flask extensions (i.e. flask_restful).
 
+# Arquitecture.
 
+I defined a simple MVC architecture to isolate and to communicate in a clean manner the models, the views and the templates. Additionally I followd the RESTfull paradigm to define the enpoints.
+
+To model the data I used a relational model which is shown below:
 
 
